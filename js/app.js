@@ -73,7 +73,8 @@ new Vue({
 	el: '#app8',
 	data: {
 		message: 'hello',
-		movies: []
+		movies: [],
+		todos: []
 	},
 	mounted: function() {
 		this.$nextTick(function() {
@@ -82,11 +83,20 @@ new Vue({
 	},
 	methods: {
 		getMovie: function() {
+			var self = this;
+			var arr=[
+                        { text: 'Learn JavaScript' },
+                        { text: 'Learn Vue' },
+                        { text: 'Build something awesome' }
+                    ];
+            this.todos = arr;
 			axios.get(apiURL)
-			  .then(function (response) {
+			  .then(response => {
 				console.log(response);
 				console.log(this);
-				this.movies = response.data;
+				console.log(self);
+				console.log(response.data);
+				self.movies = response.data;
 			  })
 			  .catch(function (error) {
 				console.log(error);
